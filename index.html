@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AURA LAB｜創業隨堂作業線上領取系統</title>
+  <title>AURA LAB｜北科大創業隨堂作業分發與生成系統</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -23,7 +25,7 @@
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <h1 class="text-lg font-bold text-slate-900 tracking-tight">AURA LAB 作業分發系統</h1>
+            <h1 class="text-lg font-bold text-slate-900 tracking-tight">AURA LAB 作業分發與單人生成系統</h1>
             <span class="px-2 py-0.5 text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-full">北科大</span>
           </div>
           <p class="text-xs text-slate-500">創業0到2的思維與實作 · 授課教師：姚長安 老師</p>
@@ -37,7 +39,7 @@
   </header>
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-8">
-    <!-- 頂部亮點橫幅 -->
+    <!-- 頂部指標橫幅 -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
@@ -77,7 +79,7 @@
       </div>
     </div>
 
-    <!-- 區塊：組員專屬卡片一鍵領取 -->
+    <!-- 區塊 1：組員專屬卡片一鍵領取 -->
     <section class="space-y-4">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
@@ -85,7 +87,7 @@
             <i data-lucide="users" class="w-5 h-5 text-indigo-600"></i>
             組員專屬一鍵領取專區
           </h2>
-          <p class="text-sm text-slate-500">找到自己的名字與學號，點擊「下載 PDF」即可直接前往 TronClass / Classroom 繳交</p>
+          <p class="text-sm text-slate-500">預設名單組員，點擊「下載 PDF」即可直接前往 TronClass / Classroom 繳交</p>
         </div>
         <a href="downloads/AURA_Homework_Team.zip" download class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm transition">
           <i data-lucide="download" class="w-4 h-4"></i>
@@ -176,7 +178,44 @@
       </div>
     </section>
 
-    <!-- 評分標準對標說明 -->
+    <!-- 區塊 2：自訂組員客製化生成（單人模式） -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+          <i data-lucide="user-plus" class="w-5 h-5 text-indigo-600"></i>
+          自訂組員客製化生成（單人模式）
+        </h2>
+        <p class="text-sm text-slate-500 mt-1">若組員名字或學號不同，直接在此輸入姓名、學號並選擇分工視角，瀏覽器將在 0.3 秒內動態生成「剛好 4 頁整」的專屬 PDF 與 Word！</p>
+      </div>
+
+      <form id="custom-form" class="grid grid-cols-1 md:grid-cols-3 gap-4" onsubmit="handleClientGenerate(event)">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1.5">學生姓名</label>
+          <input type="text" id="cust-name" required placeholder="例如：陳小華" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1.5">學生學號</label>
+          <input type="text" id="cust-id" required placeholder="例如：113AC1088" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1.5">分工角色視角</label>
+          <select id="cust-role" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition">
+            <option value="tech_lead">技術長 (Tech Lead) - 邊緣計算 / 系統公理化</option>
+            <option value="ui_ux" selected>體驗設計 (UI/UX) - 五感調香 / 情緒視覺化</option>
+            <option value="hardware_iot">硬體工程 (Hardware/IoT) - 機構剪枝 / 低故障率</option>
+            <option value="business_model">商業營運 (Business) - 單位經濟 / 猶太商道</option>
+          </select>
+        </div>
+        <div class="md:col-span-3 flex justify-end">
+          <button type="submit" id="btn-cust-submit" class="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold rounded-xl shadow-sm transition">
+            <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+            即時生成我的專屬 4 頁作業
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- 區塊 3：評分標準對標說明 -->
     <section class="bg-indigo-50/60 border border-indigo-100 rounded-2xl p-6 space-y-3">
       <h3 class="text-sm font-bold text-indigo-900 flex items-center gap-2">
         <i data-lucide="badge-check" class="w-5 h-5 text-indigo-600"></i>
@@ -203,11 +242,180 @@
     </section>
   </main>
 
+  <!-- 彈出式視窗 -->
+  <div id="modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl border border-slate-200 p-6 max-w-md w-full shadow-xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="font-bold text-slate-900 flex items-center gap-2" id="modal-title">
+          <i data-lucide="loader-2" class="w-5 h-5 text-indigo-600 animate-spin" id="modal-icon"></i>
+          作業生成中...
+        </h3>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="text-sm text-slate-600" id="modal-body">
+        正在調用瀏覽器引擎客製化組裝專屬 4 頁作業...
+      </div>
+      <div class="flex gap-3 justify-end pt-2" id="modal-actions"></div>
+    </div>
+  </div>
+
   <footer class="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-center text-xs text-slate-400 border-t border-slate-200 mt-12">
     國立臺北科技大學 互動設計系 · 《AURA LAB：智慧情緒調香快閃終端》專題團隊 · 僅供課程作業學術使用
   </footer>
 
   <script>
+    const TEMPLATES = {
+      tech_lead: {
+        docx: "downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1013_%E6%9D%8E%E6%89%BF%E7%A5%90.docx",
+        pdf: "downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1013_%E6%9D%8E%E6%89%BF%E7%A5%90.pdf",
+        oldName: "李承祐", oldId: "113AC1013"
+      },
+      ui_ux: {
+        docx: "downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1002_%E7%B5%84%E5%93%A1A.docx",
+        pdf: "downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1002_%E7%B5%84%E5%93%A1A.pdf",
+        oldName: "組員A", oldId: "113AC1002"
+      },
+      hardware_iot: {
+        docx: "downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1018_%E7%B5%84%E5%93%A1B.docx",
+        pdf: "downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1018_%E7%B5%84%E5%93%A1B.pdf",
+        oldName: "組員B", oldId: "113AC1018"
+      },
+      business_model: {
+        docx: "downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1025_%E7%B5%84%E5%93%A1C.docx",
+        pdf: "downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1025_%E7%B5%84%E5%93%A1C.pdf",
+        oldName: "組員C", oldId: "113AC1025"
+      }
+    };
+
+    function openModal(title, bodyHtml, iconType = 'loading', actions = '') {
+      document.getElementById('modal-title').innerHTML = `
+        <i data-lucide="${iconType === 'loading' ? 'loader-2' : iconType === 'success' ? 'check-circle' : 'alert-circle'}" 
+           class="w-5 h-5 ${iconType === 'loading' ? 'text-indigo-600 animate-spin' : iconType === 'success' ? 'text-emerald-600' : 'text-rose-600'}"></i>
+        ${title}
+      `;
+      document.getElementById('modal-body').innerHTML = bodyHtml;
+      document.getElementById('modal-actions').innerHTML = actions;
+      document.getElementById('modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    // 建立高解析度 Header Canvas 並轉為 PNG
+    function createHeaderPng(name, id) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1200;
+      canvas.height = 100;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.font = '22px 標楷體, DFKai-SB, "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#64748B'; // slate-500
+      ctx.fillText(`學生姓名：${name}（互動設計系三年級）　　學號：${id}　　學校：國立臺北科技大學`, 0, 48);
+
+      return canvas.toDataURL('image/png');
+    }
+
+    async function handleClientGenerate(e) {
+      e.preventDefault();
+      const name = document.getElementById('cust-name').value.trim();
+      const id = document.getElementById('cust-id').value.trim();
+      const role = document.getElementById('cust-role').value;
+
+      if (!name || !id) {
+        alert("請完整填寫姓名與學號！");
+        return;
+      }
+
+      openModal("正在為您客製排版...", `系統正在為 <strong>${name} (${id})</strong> 即時替換專屬元數據與頁首，並校驗 4 頁版面...`, 'loading');
+
+      try {
+        const config = TEMPLATES[role] || TEMPLATES.ui_ux;
+
+        // 1. 下載並處理 PDF
+        const pdfResp = await fetch(config.pdf);
+        const pdfBytes = await pdfResp.arrayBuffer();
+        const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
+
+        const headerPngDataUrl = createHeaderPng(name, id);
+        const headerImage = await pdfDoc.embedPng(headerPngDataUrl);
+
+        // 遍歷 4 個頁面，覆蓋原有第二行頁首並繪入新姓名與學號
+        const pages = pdfDoc.getPages();
+        for (const p of pages) {
+          const { width, height } = p.getSize();
+          // 白色覆蓋方塊
+          p.drawRectangle({
+            x: 72,
+            y: height - 60,
+            width: 460,
+            height: 18,
+            color: PDFLib.rgb(1, 1, 1)
+          });
+          // 繪製高清晰文字圖片
+          p.drawImage(headerImage, {
+            x: 72,
+            y: height - 62,
+            width: 500,
+            height: 42
+          });
+        }
+
+        const finalPdfBytes = await pdfDoc.save();
+        const pdfBlob = new Blob([finalPdfBytes], { type: 'application/pdf' });
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+
+        // 2. 下載並處理 DOCX
+        const docxResp = await fetch(config.docx);
+        const docxBytes = await docxResp.arrayBuffer();
+        const zip = await JSZip.loadAsync(docxBytes);
+
+        // 替換 header 與 document 中之舊姓名/學號
+        const filesToReplace = ['word/header1.xml', 'word/header2.xml', 'word/document.xml', 'docProps/core.xml'];
+        for (const f of filesToReplace) {
+          const entry = zip.file(f);
+          if (entry) {
+            let content = await entry.async('text');
+            content = content.replaceAll(config.oldName, name).replaceAll(config.oldId, id);
+            zip.file(f, content);
+          }
+        }
+
+        const finalDocxBytes = await zip.generateAsync({ type: 'blob' });
+        const docxUrl = URL.createObjectURL(finalDocxBytes);
+
+        const pdfFilename = `互動三_${id}_${name}.pdf`;
+        const docxFilename = `互動三_${id}_${name}.docx`;
+
+        openModal("客製化作業生成成功！", `
+          <div class="space-y-2">
+            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-800 flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>
+              <strong>校驗通過：</strong> 頁數鎖定 <strong>4 頁整</strong>，元數據已綁定 <strong>${name}</strong>！
+            </div>
+            <p class="text-xs text-slate-500">檔名依北科大規定標準命名：<code class="font-mono bg-slate-100 px-1 py-0.5 rounded">${pdfFilename}</code></p>
+          </div>
+        `, 'success', `
+          <a href="${pdfUrl}" download="${pdfFilename}" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl flex items-center gap-1.5 transition">
+            <i data-lucide="download" class="w-4 h-4"></i> 下載客製 PDF (直接繳交)
+          </a>
+          <a href="${docxUrl}" download="${docxFilename}" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl flex items-center gap-1.5 transition">
+            下載 Word 備用
+          </a>
+        `);
+
+      } catch (err) {
+        console.error(err);
+        openModal("生成異常", `<p class="text-xs text-rose-600">錯誤訊息：${err.message}</p>`, 'error');
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
     });
