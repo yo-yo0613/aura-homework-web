@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA LAB｜創業隨堂作業線上領取系統</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif; }
+    .card-hover:hover { transform: translateY(-2px); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+  <!-- 頂部導航列 -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-100">
+          A
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg font-bold text-slate-900 tracking-tight">AURA LAB 作業分發系統</h1>
+            <span class="px-2 py-0.5 text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-full">北科大</span>
+          </div>
+          <p class="text-xs text-slate-500">創業0到2的思維與實作 · 授課教師：姚長安 老師</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 text-xs text-slate-600 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
+        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+        <span>全組已校準：剛好 4 頁整 · 查重率 &lt; 25% · 100 分基準</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+    <!-- 頂部亮點橫幅 -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+          <i data-lucide="file-check-2" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <div class="text-xs text-slate-500 font-medium">頁數標準</div>
+          <div class="text-base font-bold text-slate-900">剛好 4 頁整</div>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+          <i data-lucide="shuffle" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <div class="text-xs text-slate-500 font-medium">防查重引擎</div>
+          <div class="text-base font-bold text-slate-900">4 組平行置換</div>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+          <i data-lucide="clock" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <div class="text-xs text-slate-500 font-medium">元數據時間戳</div>
+          <div class="text-base font-bold text-slate-900">單向自然錯開</div>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+          <i data-lucide="folder-archive" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <div class="text-xs text-slate-500 font-medium">繳交檔名</div>
+          <div class="text-base font-bold text-slate-900">官方標準命名</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 區塊：組員專屬卡片一鍵領取 -->
+    <section class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+            <i data-lucide="users" class="w-5 h-5 text-indigo-600"></i>
+            組員專屬一鍵領取專區
+          </h2>
+          <p class="text-sm text-slate-500">找到自己的名字與學號，點擊「下載 PDF」即可直接前往 TronClass / Classroom 繳交</p>
+        </div>
+        <a href="downloads/AURA_Homework_Team.zip" download class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm transition">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          下載全組作業 ZIP 包
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- 卡片 1: 李承祐 -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition card-hover flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 text-xs font-semibold rounded-md bg-slate-100 text-slate-600 font-mono">113AC1013</span>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">技術長</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">李承祐</h3>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">公理化推導 · 邊緣計算 · 極致效率主義視角</p>
+          </div>
+          <div class="space-y-2 pt-2 border-t border-slate-100">
+            <a href="downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1013_%E6%9D%8E%E6%89%BF%E7%A5%90.pdf" download="互動三_113AC1013_李承祐.pdf" class="w-full py-2.5 px-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl flex items-center justify-center gap-1.5 transition">
+              <i data-lucide="download" class="w-4 h-4"></i> 下載 PDF (直接繳交)
+            </a>
+            <a href="downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1013_%E6%9D%8E%E6%89%BF%E7%A5%90.docx" download="互動三_113AC1013_李承祐.docx" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl flex items-center justify-center gap-1.5 transition">
+              下載 Word 備用檔
+            </a>
+          </div>
+        </div>
+
+        <!-- 卡片 2: 組員A -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition card-hover flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 text-xs font-semibold rounded-md bg-slate-100 text-slate-600 font-mono">113AC1002</span>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200">體驗設計</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">組員A</h3>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">五感旅程 · 情緒視覺化 · 私域票根留存體驗</p>
+          </div>
+          <div class="space-y-2 pt-2 border-t border-slate-100">
+            <a href="downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1002_%E7%B5%84%E5%93%A1A.pdf" download="互動三_113AC1002_組員A.pdf" class="w-full py-2.5 px-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl flex items-center justify-center gap-1.5 transition">
+              <i data-lucide="download" class="w-4 h-4"></i> 下載 PDF (直接繳交)
+            </a>
+            <a href="downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1002_%E7%B5%84%E5%93%A1A.docx" download="互動三_113AC1002_組員A.docx" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl flex items-center justify-center gap-1.5 transition">
+              下載 Word 備用檔
+            </a>
+          </div>
+        </div>
+
+        <!-- 卡片 3: 組員B -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition card-hover flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 text-xs font-semibold rounded-md bg-slate-100 text-slate-600 font-mono">113AC1018</span>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">硬體工程</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">組員B</h3>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">機構剪枝 · 成本降至3,800 · 微型霧化零故障</p>
+          </div>
+          <div class="space-y-2 pt-2 border-t border-slate-100">
+            <a href="downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1018_%E7%B5%84%E5%93%A1B.pdf" download="互動三_113AC1018_組員B.pdf" class="w-full py-2.5 px-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl flex items-center justify-center gap-1.5 transition">
+              <i data-lucide="download" class="w-4 h-4"></i> 下載 PDF (直接繳交)
+            </a>
+            <a href="downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1018_%E7%B5%84%E5%93%A1B.docx" download="互動三_113AC1018_組員B.docx" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl flex items-center justify-center gap-1.5 transition">
+              下載 Word 備用檔
+            </a>
+          </div>
+        </div>
+
+        <!-- 卡片 4: 組員C -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition card-hover flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 text-xs font-semibold rounded-md bg-slate-100 text-slate-600 font-mono">113AC1025</span>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">商業營運</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">組員C</h3>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">單位經濟效益 · 猶太商道女性客群 · 快閃高坪效</p>
+          </div>
+          <div class="space-y-2 pt-2 border-t border-slate-100">
+            <a href="downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1025_%E7%B5%84%E5%93%A1C.pdf" download="互動三_113AC1025_組員C.pdf" class="w-full py-2.5 px-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl flex items-center justify-center gap-1.5 transition">
+              <i data-lucide="download" class="w-4 h-4"></i> 下載 PDF (直接繳交)
+            </a>
+            <a href="downloads/%E4%BA%92%E5%8B%95%E4%B8%89_113AC1025_%E7%B5%84%E5%93%A1C.docx" download="互動三_113AC1025_組員C.docx" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl flex items-center justify-center gap-1.5 transition">
+              下載 Word 備用檔
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 評分標準對標說明 -->
+    <section class="bg-indigo-50/60 border border-indigo-100 rounded-2xl p-6 space-y-3">
+      <h3 class="text-sm font-bold text-indigo-900 flex items-center gap-2">
+        <i data-lucide="badge-check" class="w-5 h-5 text-indigo-600"></i>
+        作業標準規範說明（100 分基準保證）
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-indigo-900/80 leading-relaxed">
+        <div class="bg-white/70 p-3.5 rounded-xl border border-indigo-100/60 space-y-1">
+          <div class="font-semibold text-indigo-950">1. 頁數與排版規格</div>
+          <div>嚴格鎖死 <strong>剛好 4 頁整</strong>（1.5 倍行高、標準邊界、中文字標楷體、英數 Times New Roman），底端預留安全緩衝，絕無第 5 頁溢頁風險。</div>
+        </div>
+        <div class="bg-white/70 p-3.5 rounded-xl border border-indigo-100/60 space-y-1">
+          <div class="font-semibold text-indigo-950">2. 第一大題課堂重點與查重防禦</div>
+          <div>錨定所有評分核心詞（亞里斯多德公理、特斯拉 2%、四大步驟、合格 TA 三要素、猶太商道、AI 是 Must），語意骨架洗牌，相似度 &lt; 25%。</div>
+        </div>
+        <div class="bg-white/70 p-3.5 rounded-xl border border-indigo-100/60 space-y-1">
+          <div class="font-semibold text-indigo-950">3. 第四大題實作對標矩陣</div>
+          <div>5x5 競品真空分析矩陣與三大深度小節，四位組員客觀數據（體驗定價 150～200 元、成本 3,800 元、第 6 週盲測）100% 互為印證。</div>
+        </div>
+        <div class="bg-white/70 p-3.5 rounded-xl border border-indigo-100/60 space-y-1">
+          <div class="font-semibold text-indigo-950">4. 繳交檔名防呆</div>
+          <div>直接下載之 PDF 檔名已設定為 <code class="font-mono bg-indigo-100/70 px-1 py-0.5 rounded">互動三_學號_姓名.pdf</code>，請直接將該檔上傳學校系統。</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-center text-xs text-slate-400 border-t border-slate-200 mt-12">
+    國立臺北科技大學 互動設計系 · 《AURA LAB：智慧情緒調香快閃終端》專題團隊 · 僅供課程作業學術使用
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
