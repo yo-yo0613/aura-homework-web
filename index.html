@@ -305,19 +305,25 @@
       document.getElementById('modal').classList.add('hidden');
     }
 
-    // 建立高解析度 Header Canvas 並轉為 PNG
+    // 建立高解析度 Header Canvas 並轉為 PNG（包含完整雙行公版抬頭，防跑版防重疊）
     function createHeaderPng(name, id) {
       const canvas = document.createElement('canvas');
       canvas.width = 1200;
-      canvas.height = 100;
+      canvas.height = 80;
       const ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.font = '22px 標楷體, DFKai-SB, "Noto Sans TC", sans-serif';
+      ctx.font = '23px "DFKai-SB", "BiauKai", "標楷體", "Noto Sans TC", sans-serif';
       ctx.fillStyle = '#64748B'; // slate-500
-      ctx.fillText(`學生姓名：${name}（互動設計系三年級）　　學號：${id}　　學校：國立臺北科技大學`, 0, 48);
+      ctx.textBaseline = 'top';
+
+      const line1 = '課程名稱：創業0到2的思維與實作  筆記課程主題：12品牌原型、命名降噪與價值主張  授課老師：姚長安 老師';
+      const line2 = `學生姓名：${name}（互動設計系三年級）  學號：${id}  學校：國立臺北科技大學`;
+
+      ctx.fillText(line1, 0, 4);
+      ctx.fillText(line2, 0, 44);
 
       return canvas.toDataURL('image/png');
     }
@@ -346,24 +352,24 @@
         const headerPngDataUrl = createHeaderPng(name, id);
         const headerImage = await pdfDoc.embedPng(headerPngDataUrl);
 
-        // 遍歷 4 個頁面，覆蓋原有第二行頁首並繪入新姓名與學號
+        // 遍歷 4 個頁面，完整覆蓋舊有頁首並精準繪入乾淨雙行頁首（包含課程主題與新組員姓名學號）
         const pages = pdfDoc.getPages();
         for (const p of pages) {
           const { width, height } = p.getSize();
-          // 白色覆蓋方塊
+          // 白色覆蓋方塊：精確覆蓋舊頁首區域（頂部 30pt ~ 66pt）
           p.drawRectangle({
-            x: 72,
-            y: height - 60,
-            width: 460,
-            height: 18,
+            x: 68,
+            y: height - 66,
+            width: 464,
+            height: 36,
             color: PDFLib.rgb(1, 1, 1)
           });
-          // 繪製高清晰文字圖片
+          // 繪製高解析度雙行頁首圖片
           p.drawImage(headerImage, {
             x: 72,
-            y: height - 62,
-            width: 500,
-            height: 42
+            y: height - 63,
+            width: 452,
+            height: 31
           });
         }
 
