@@ -117,6 +117,25 @@
           <p class="text-xs text-slate-300 leading-relaxed">未按壓時自然揮手、拿麥克風或操作教具皆完全忽略動作；內建 500ms 候選窗與自動中立姿態恢復機制，回腕絕不誤翻頁。</p>
         </div>
       </div>
+
+      <!-- 兩支實測 MP4 影片與三代硬體迭代實錄 -->
+      <div class="p-6 rounded-2xl bg-slate-900/80 border border-sky-400/30 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-7">
+          <img src="proto_4stage_grid.jpg" alt="慧演三代硬體與兩支實測影片演進" class="rounded-xl border border-white/10 w-full shadow-lg">
+        </div>
+        <div class="lg:col-span-5 space-y-4">
+          <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold">PROTOTYPE &amp; VIDEO MILESTONES</span>
+          <h3 class="text-2xl font-black text-white">從桌面麵包板到穿戴上身實測（落實指導老師回饋）</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            針對指導老師建議：<span class="text-amber-300 font-semibold">「手勢應更自然，建議參考使用平板與手機的習慣姿勢決定控制方式：上下頁、放大縮小、pointer」</span>，團隊於 11/17 完成韌體模組化重構與穿戴實測（<code class="text-sky-300">進度.mp4</code>）：
+          </p>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>✅ <b>自然翻腕放寬至 150° (<code class="text-sky-300">Gesture.cpp</code>)</b>：符合人體工學自然轉腕，左旋下一頁、右旋上一頁，回腕 LOCKOUT 絕不誤觸。</li>
+            <li>✅ <b>傾斜游標 Pointer (<code class="text-amber-300">TiltMouse.cpp</code>)</b>：手腕微傾 4°~25° 平滑控制螢幕游標，最高 800 HID counts/s，點擊自動抑制位移。</li>
+            <li>✅ <b>雙鍵仲裁與配對 (<code class="text-emerald-300">PairButton.cpp</code>)</b>：GPIO3 支援單擊、雙擊與長按 3 秒切模式；GPIO6 長按 2 秒開啟 BLE 配對窗口。</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
