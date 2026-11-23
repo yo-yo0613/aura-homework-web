@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>慧演 HuiYan｜穿戴式微手勢簡報控制器 - 官方品牌網站</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Sans TC', sans-serif; background-color: #080B11; color: #F8FAFC; }
+    .gold-grad { background: linear-gradient(135deg, #E2B86B 0%, #C6934B 50%, #9A6B28 100%); }
+    .blue-text { color: #7CC2FF; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Wix 風格頂部品牌導覽列 -->
+  <header class="border-b border-white/10 bg-black/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo_huiyan.jpg" alt="慧演 HuiYan Logo" class="w-10 h-10 rounded-lg object-cover border border-amber-500/40">
+        <div>
+          <span class="text-xl font-black tracking-wider text-white">慧演 <span class="text-amber-400">HuiYan</span></span>
+          <span class="hidden sm:inline-block ml-2 text-xs text-slate-400 border-l border-white/15 pl-2">盡情在我，讓演講自由發揮</span>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-slate-300 font-medium">
+        <a href="#features" class="hover:text-sky-400 transition">核心優勢</a>
+        <a href="#modes" class="hover:text-sky-400 transition">簡報/滑鼠雙模</a>
+        <a href="#prototype" class="hover:text-sky-400 transition">實機研發</a>
+        <a href="#pricing" class="hover:text-sky-400 transition">規格與預購</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="https://line.me/R/ti/p/@532luens" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition shadow-lg shadow-emerald-900/40">
+          <i data-lucide="message-circle" class="w-4 h-4"></i> LINE 官方 (@532luens)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero 主視覺區 -->
+  <section class="relative overflow-hidden py-16 sm:py-24 border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-300 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+          2026 全新雙模穿戴式微手勢控制器 · 簡報翻頁 ＋ 傾斜游標 Pointer
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
+          把換頁與游標控制，<br>
+          <span class="blue-text">直接戴在手上。</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl">
+          你上台拿著麥克風與教具示範時，是否也恨不得多一隻手？<br>
+          <strong>【慧演 HuiYan】</strong>以半指彈性穿戴結合六軸姿態感測與食指微捏致能，讓你不需放下手中展品，微轉手腕即刻流暢控場。
+        </p>
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="#pricing" class="px-7 py-3.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-black text-sm shadow-lg shadow-sky-500/25 transition">
+            立即早鳥預購 NT$ 890 起
+          </a>
+          <a href="https://line.me/R/ti/p/@532luens" target="_blank" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-semibold text-sm transition">
+            預約 15 分鐘實機試用
+          </a>
+        </div>
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 text-center sm:text-left">
+          <div>
+            <div class="text-2xl font-black text-amber-400">65.5%</div>
+            <div class="text-xs text-slate-400">講者首選半指手套型態</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-sky-400">&lt; 15ms</div>
+            <div class="text-xs text-slate-400">BLE 無線超低延遲響應</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-emerald-400">93.1%</div>
+            <div class="text-xs text-slate-400">受訪講者具明確購買意願</div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-5">
+        <div class="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-black">
+          <img src="assets/glove_hero.jpg" alt="慧演 HuiYan 穿戴式微手勢簡報控制器" class="w-full h-auto object-cover">
+          <div class="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-md border border-white/10 rounded-2xl p-4 flex items-center justify-between">
+            <div>
+              <div class="text-xs text-sky-400 font-bold">微捏致能防誤觸專利架構</div>
+              <div class="text-sm font-bold text-white">按住才接受轉腕指令・放開即停止</div>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30 text-xs font-bold">雙模支援</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 雙模操作與三大痛點閉合 -->
+  <section id="modes" class="py-16 border-b border-white/10 bg-slate-950/60">
+    <div class="max-w-6xl mx-auto px-6 space-y-10">
+      <div class="text-center space-y-2">
+        <div class="text-xs font-bold tracking-widest uppercase text-sky-400">DUAL-MODE INTERACTION</div>
+        <h2 class="text-3xl font-black">一鍵長按 3 秒，自由切換「簡報 / 滑鼠游標」雙模式</h2>
+        <p class="text-sm text-slate-400">吸收教學與產品展示實戰回饋，將手機/平板直覺體感延伸至大型簡報舞台</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center font-black">01</div>
+          <h3 class="text-lg font-bold text-white">簡報翻頁模式</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">拇指微捏食指感應鍵啟動偵測，手腕左右快速旋轉即可控制上一頁／下一頁；亦支援按鍵單擊下一頁、雙擊上一頁雙重保障。</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-sky-950/40 border border-sky-400/40 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-black">02</div>
+          <h3 class="text-lg font-bold text-white">滑鼠游標模式 (Pointer)</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">長按按鍵 3 秒即刻切換！透過手腕前後左右微傾直覺引導螢幕游標（Pointer）指點細節，搭配單擊左鍵、雙擊右鍵互動。</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-black">03</div>
+          <h3 class="text-lg font-bold text-white">100% 防誤觸與中立恢復</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">未按壓時自然揮手、拿麥克風或操作教具皆完全忽略動作；內建 500ms 候選窗與自動中立姿態恢復機制，回腕絕不誤翻頁。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 價格與預購方案 -->
+  <section id="pricing" class="py-16">
+    <div class="max-w-6xl mx-auto px-6 space-y-10">
+      <div class="text-center space-y-2">
+        <div class="text-xs font-bold tracking-widest uppercase text-amber-400">PRICING &amp; PRE-ORDER</div>
+        <h2 class="text-3xl font-black">透明親民定價，專為教學與商務講者而生</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between space-y-6">
+          <div class="space-y-2">
+            <span class="text-xs font-bold text-slate-400">校園早鳥標準版</span>
+            <h3 class="text-xl font-bold">微動按鍵雙模版</h3>
+            <div class="text-3xl font-black text-white pt-2">NT$ 890 <span class="text-xs font-normal text-slate-400">/ 套 (BOM成本 $340)</span></div>
+            <p class="text-xs text-slate-400 pt-2">含 ESP32-C3 主控、MPU-6050 六軸感測、食指微動按鍵、BLE 簡報/滑鼠雙模韌體與透氣半指套。</p>
+          </div>
+          <a href="https://line.me/R/ti/p/@532luens" target="_blank" class="w-full py-3 rounded-xl bg-white/10 hover:bg-white/20 text-center text-xs font-bold transition">透過 LINE 預約訂購</a>
+        </div>
+        <div class="p-6 rounded-2xl bg-gradient-to-b from-sky-950/60 to-slate-900 border-2 border-sky-400 flex flex-col justify-between space-y-6 shadow-xl">
+          <div class="space-y-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-sky-400 text-slate-950 text-xs font-black">最受歡迎旗艦款</span>
+            <h3 class="text-xl font-bold pt-1">FSR 壓力感測專業版</h3>
+            <div class="text-3xl font-black text-sky-400 pt-2">NT$ 1,280 <span class="text-xs font-normal text-slate-400">/ 套 (BOM成本 $630)</span></div>
+            <p class="text-xs text-slate-300 pt-2">升級超薄 FSR 薄膜壓力感測器＋未來 XIAO 微型化與免驅動 USB Dongle 接收器支援，零按鍵阻力。</p>
+          </div>
+          <a href="https://line.me/R/ti/p/@532luens" target="_blank" class="w-full py-3 rounded-xl bg-sky-400 hover:bg-sky-300 text-slate-950 text-center text-xs font-black transition">立即搶先預購</a>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between space-y-6">
+          <div class="space-y-2">
+            <span class="text-xs font-bold text-amber-400">專屬替換耗材 (LTV)</span>
+            <h3 class="text-xl font-bold">可拆洗抗菌透氣半指套</h3>
+            <div class="text-3xl font-black text-white pt-2">NT$ 150 <span class="text-xs font-normal text-slate-400">/ 件</span></div>
+            <p class="text-xs text-slate-400 pt-2">解決長時間 40-60 分鐘演講手汗與衛生需求，快拆式魔鬼氈結構，方便每季定期替換與清洗維護。</p>
+          </div>
+          <a href="https://line.me/R/ti/p/@532luens" target="_blank" class="w-full py-3 rounded-xl bg-white/10 hover:bg-white/20 text-center text-xs font-bold transition">加購替換配件</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/10 py-8 text-center text-xs text-slate-500 mt-auto">
+    慧演 HuiYan 創新創業團隊（國立臺北科技大學）· 盡情在我，讓演講自由發揮 · 官方 LINE ID: @532luens
+  </footer>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
